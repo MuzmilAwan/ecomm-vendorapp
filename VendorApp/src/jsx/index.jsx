@@ -320,7 +320,7 @@ const Markup = () => {
             <Route path='page-login' element={<Login />} /> */}
 
             <Route element={<MainLayout2 />} >
-               {/* <Route path='' element={<Home />} /> */}
+               <Route path='' element={<Home />} />
                <Route path='/dashboard' element={<Home />} />
                {/* <Route path='/dashboard-dark' element={<DashboardDark />} /> */}
             </Route>
