@@ -154,12 +154,12 @@ const SideBar = () =>{
 
             <div className="copyright">
                <p>                  
-                  Tixia Ticketing Admin Dashboard <br/> © {year} All Rights Reserved
+                  Tixia Vendor Admin Dashboard <br/> © {year} All Rights Reserved
                </p>
                <p className="op5">
                   Made with <span className="heart"
                      onClick={(e)=>e.target.classList.toggle("heart-blast")}
-                  ></span> by DexignZone
+                  ></span> by MalikMuzammil
                </p>
             </div>
          </div>

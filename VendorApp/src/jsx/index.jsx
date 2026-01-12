@@ -33,7 +33,7 @@ import Analytics from "./components/Dashboard/Analytics";
 
 //Profile 
 // import Overview from './components/Profile/Overview'
-// import Projects from './components/Profile/Projects'
+import Projects from './components/Profile/Projects'
 // import ProjectsDetails from './components/Profile/ProjectsDetails'
 // import Campaigns from './components/Profile/Campaigns'
 // import Documents from './components/Profile/Documents'
@@ -134,7 +134,7 @@ import RechartJs from "./components/charts/rechart";
 // import Lightgallery from "./components/PluginsMenu/Lightgallery/Lightgallery";
 
 /// Widget
-import Widget from "./pages/Widget";
+// import Widget from "./pages/Widget";
 
 /// Table
 // import DataTable from "./components/table/DataTable";
@@ -151,15 +151,15 @@ import Widget from "./pages/Widget";
 // import FormValidation from "./components/Forms/FormValidation/FormValidation";
 
 /// Pages
-import Registration from "./pages/Registration";
-import Login from "./pages/Login";
-import ForgotPassword from "./pages/ForgotPassword";
-// import LockScreen from "./pages/LockScreen";
-import Error400 from "./pages/Error400";
-import Error403 from "./pages/Error403";
-import Error404 from "./pages/Error404";
-import Error500 from "./pages/Error500";
-import Error503 from "./pages/Error503";
+// import Registration from "./pages/Registration";
+// import Login from "./pages/Login";
+// import ForgotPassword from "./pages/ForgotPassword";
+// // import LockScreen from "./pages/LockScreen";
+// import Error400 from "./pages/Error400";
+// import Error403 from "./pages/Error403";
+// import Error404 from "./pages/Error404";
+// import Error500 from "./pages/Error500";
+// import Error503 from "./pages/Error503";
 import EventSidebar from "./layouts/EventSidebar";
 
 
@@ -185,7 +185,7 @@ const Markup = () => {
 
       //Profile
     //   { url: "profile/overview", component: <Overview /> },
-    //   { url: "profile/projects", component: <Projects /> },
+      { url: "profile/projects", component: <Projects /> },
     //   { url: "profile/projects-details", component: <ProjectsDetails /> },
     //   { url: "profile/campaigns", component: <Campaigns /> },
     //   { url: "profile/documents", component: <Documents /> },
@@ -288,7 +288,7 @@ const Markup = () => {
     //   { url: "uc-lightgallery", component: <Lightgallery /> },
 
       /// Widget
-      { url: "widget-basic", component: <Widget /> },
+      // { url: "widget-basic", component: <Widget /> },
 
      
       /// Form
@@ -309,7 +309,7 @@ const Markup = () => {
    return (
       <Fragment>        
          <Routes>
-            {/* <Route path='page-lock-screen' element={<LockScreen />} /> */}
+            {/* <Route path='page-lock-screen' element={<LockScreen />} />
             <Route path='page-error-400' element={<Error400 />} />
             <Route path='page-error-403' element={<Error403 />} />
             <Route path='page-error-404' element={<Error404 />} />
@@ -317,10 +317,10 @@ const Markup = () => {
             <Route path='page-error-503' element={<Error503 />} />
             <Route path='page-forgot-password' element={<ForgotPassword />} />
             <Route path='page-register' element={<Registration />} />
-            <Route path='page-login' element={<Login />} />
+            <Route path='page-login' element={<Login />} /> */}
 
             <Route element={<MainLayout2 />} >
-               <Route path='' element={<Home />} />
+               {/* <Route path='' element={<Home />} /> */}
                <Route path='/dashboard' element={<Home />} />
                {/* <Route path='/dashboard-dark' element={<DashboardDark />} /> */}
             </Route>

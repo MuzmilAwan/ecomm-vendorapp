@@ -9,7 +9,7 @@ const Footer = () => {
         <p>
           Copyright © Designed &amp; Developed by{" "}
           <Link to="http://dexignzone.com/" target="_blank">
-            DexignZone
+            Muzammil
           </Link>{" "}
           {year}
         </p>

@@ -79,41 +79,41 @@ export const MenuList = [
     // },
 
     //Profile Pages
-    // {
-    //     title:'Profile',
-    //     classChange : "mm-collapse",        
-    //     iconStyle : <i className="fa-regular fa-user fw-bold"/>,
-    //     content : [
-    //         {
-    //             title: 'Overview',
-    //             to: 'profile/overview',
-    //         },
-    //         {
-    //             title: 'Projects',
-    //             to: 'profile/projects',
-    //         },
-    //         {
-    //             title: 'Projects Details',
-    //             to: 'profile/projects-details',
-    //         },
-    //         {
-    //             title: 'Campaigns',
-    //             to: 'profile/campaigns',
-    //         },
-    //         {
-    //             title: 'Documents',
-    //             to: 'profile/documents',
-    //         },
-    //         {
-    //             title: 'Followers',
-    //             to: 'profile/followers',
-    //         },
-    //         {
-    //             title: 'Activity',
-    //             to: 'profile/activity',
-    //         },
-    //     ],
-    // },
+    {
+        title:'Profile',
+        classChange : "mm-collapse",        
+        iconStyle : <i className="fa-regular fa-user fw-bold"/>,
+        content : [
+            // {
+            //     title: 'Overview',
+            //     to: 'profile/overview',
+            // },
+            {
+                title: 'Projects',
+                to: 'profile/projects',
+            },
+            // {
+            //     title: 'Projects Details',
+            //     to: 'profile/projects-details',
+            // },
+            // {
+            //     title: 'Campaigns',
+            //     to: 'profile/campaigns',
+            // },
+            // {
+            //     title: 'Documents',
+            //     to: 'profile/documents',
+            // },
+            // {
+            //     title: 'Followers',
+            //     to: 'profile/followers',
+            // },
+            // {
+            //     title: 'Activity',
+            //     to: 'profile/activity',
+            // },
+        ],
+    },
 
     //Account Pages
     // {

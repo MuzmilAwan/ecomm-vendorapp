@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { IMAGES } from "../content/ThemeContext";
+import { IMAGES } from "../content/theme";
 
 
 const LockScreen = () => {
