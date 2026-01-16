@@ -3,6 +3,7 @@ import HomeComponent from "./HomeComponent";
 import { ThemeContext } from "../../../context/ThemeContext";
 
 
+
 const DashboardDark = () => {
    const {changeBackground} = useContext(ThemeContext);
    useEffect(()=>{
@@ -11,6 +12,7 @@ const DashboardDark = () => {
    return (
       <Fragment>
          <HomeComponent />
+      
       </Fragment>
    );
 };

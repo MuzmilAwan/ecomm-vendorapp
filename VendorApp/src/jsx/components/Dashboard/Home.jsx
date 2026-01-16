@@ -3,6 +3,7 @@ import HomeComponent from "./HomeComponent";
 import { ThemeContext } from "../../../context/ThemeContext";
 
 
+
 const Home = () => {
    const {changeBackground} = useContext(ThemeContext);
    useEffect(()=>{

@@ -1,6 +1,9 @@
-import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
+
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
+
 
 import loadable from "@loadable/component";
 import pMinDelay from "p-min-delay";
@@ -21,17 +24,60 @@ const PieChart5 = loadable(() =>
    pMinDelay(import("../charts/apexcharts/Pie5"), 1000)
 );
 
+
 const Analytics = () => {
+
+   const { isAuthenticated, user, getIdTokenClaims } = useAuth0();
+   const [idToken, setIdToken] = useState(null);
+
+   useEffect(() => {
+      const loadToken = async () => {
+         if (isAuthenticated) {
+            const claims = await getIdTokenClaims();
+            setIdToken(claims?.__raw || null);
+         }
+      };
+
+      loadToken();
+   }, [isAuthenticated, getIdTokenClaims]);
+
+
    return (
       <>
+         {/* AUTH0 RESPONSE DISPLAY (TEMPORARY) */}
+        
+         <div className="card mt-3">
+            <div className="card-body">
+               <h5>User Profile</h5>
+               <pre style={{ fontSize: "12px" }}>
+                  {JSON.stringify(user, null, 2)}
+               </pre>
+
+               <h5 className="mt-3">ID Token (JWT)</h5>
+               <pre
+                  style={{
+
+                     color: "rgb(13, 80, 224)",
+                     padding: "10px",
+                     overflowX: "auto",
+                     fontSize: "11px",
+                  }}
+               >
+                  {idToken}
+               </pre>
+            </div>
+         </div>
+
          <div className="page-titles">
             <ol className="breadcrumb">
-               <li className="breadcrumb-item">
-                  <Link to="/analytics">Dashboard</Link>
-               </li>
                <li className="breadcrumb-item active">
                   <Link to="/analytics">Analytics</Link>
                </li>
+               {/* <li className="breadcrumb-item active">
+                  <Link to="/analytics">Analytics</Link>
+               </li> */}
+
+
             </ol>
          </div>
          <div className="row">
@@ -42,7 +88,7 @@ const Analytics = () => {
                         <div className="card-header border-0 pb-0 d-sm-flex d-block">
                            <h4 className="card-title mb-1">Trending Items</h4>
                            <Dropdown className="dropdown ms-auto text-end">
-                              <Dropdown.Toggle
+                              {/* <Dropdown.Toggle
                                  variant=""
                                  className="btn-link icon-false p-0"
                               >
@@ -86,7 +132,7 @@ const Analytics = () => {
                                        />
                                     </g>
                                  </svg>
-                              </Dropdown.Toggle>
+                              </Dropdown.Toggle> */}
                               <Dropdown.Menu className="dropdown-menu dropdown-menu-right">
                                  <Dropdown.Item
                                     className="dropdown-item"
@@ -324,7 +370,7 @@ const Analytics = () => {
                                  456k Pcs
                               </h5>
                               <p className="fs-14 mb-0">Ticket Sold</p>
-                           </div>                          
+                           </div>
                            <CommanSelect />
                         </div>
                         <div className="card-body">
@@ -351,7 +397,7 @@ const Analytics = () => {
                                  Pie Chart
                               </h5>
                               <p className="fs-14 mb-0">Ticket Sold</p>
-                           </div>                          
+                           </div>
                            <CommanSelect />
                         </div>
                         <div className="card-body pt-2">
@@ -460,7 +506,7 @@ const Analytics = () => {
                               <span className="text-black">Tuesday</span>
                               <span className="text-black">215,523 pcs</span>
                            </div>
-                           <div className="text-center">                              
+                           <div className="text-center">
                               <ApexPie4 />
                            </div>
                            <div className="row mx-0">

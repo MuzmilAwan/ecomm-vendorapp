@@ -1,78 +1,78 @@
-import React, { useContext,useEffect,useReducer, useState } from "react";
-import {Modal, Collapse} from 'react-bootstrap';
+import React, { useContext, useEffect, useReducer, useState } from "react";
+import { Modal, Collapse } from 'react-bootstrap';
 import { Link } from "react-router-dom";
-import {useScrollPosition} from "@n8tb1t/use-scroll-position";
-import {ThemeContext} from '../../../context/ThemeContext'
+import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import { ThemeContext } from '../../../context/ThemeContext'
 
-import {MenuList} from './Menu';
+import { MenuList } from './Menu';
 
 const reducer = (previousState, updatedState) => ({
    ...previousState,
    ...updatedState,
- });
- 
- const initialState = {
-   active : "",
-   activeSubmenu : "",
- }
+});
+
+const initialState = {
+   active: "",
+   activeSubmenu: "",
+}
 
 
-const SideBar = () =>{
+const SideBar = () => {
    let year = new Date().getFullYear();
-   const [state, setState] = useReducer(reducer, initialState);	
-  const {iconHover,
-   ChangeIconSidebar
-  } = 
-   useContext(ThemeContext)
+   const [state, setState] = useReducer(reducer, initialState);
+   const { iconHover,
+      ChangeIconSidebar
+   } =
+      useContext(ThemeContext)
 
-  
+
    // For scroll
    const [hideOnScroll, setHideOnScroll] = useState(true)
    useScrollPosition(
-       ({ prevPos, currPos }) => {
+      ({ prevPos, currPos }) => {
          const isShow = currPos.y > prevPos.y
          if (isShow !== hideOnScroll) setHideOnScroll(isShow)
-       },
-       [hideOnScroll]
+      },
+      [hideOnScroll]
    )
 
    /// Open menu  
-   const handleMenuActive = status => {		
-		setState({active : status});			
-		if(state.active === status){				
-			setState({active : ""});
-		}   
-	}
-	const handleSubmenuActive = (status) => {		
-		setState({activeSubmenu : status})
-		if(state.activeSubmenu === status){
-			setState({activeSubmenu : ""})			
-		}    
-	}
-  
-  
-  /// Path
-  let path = window.location.pathname;
-  path = path.split("/");
-  path = path[path.length - 1];  
+   const handleMenuActive = status => {
+      setState({ active: status });
+      if (state.active === status) {
+         setState({ active: "" });
+      }
+   }
+   // const handleSubmenuActive = (status) => {		
+   // 	setState({activeSubmenu : status})
+   // 	if(state.activeSubmenu === status){
+   // 		setState({activeSubmenu : ""})			
+   // 	}    
+   // }
 
-  useEffect(() => {
-    MenuList.forEach((data) => {
-      data.content?.forEach((item) => {
-        if (path === item.to) {
-          setState({ active: data.title })
-        }
-        item.content?.forEach(ele => {
-          if (path === ele.to) {
-            setState({ activeSubmenu: item.title, active: data.title })
-          }
-        })
+
+   /// Path
+   let path = window.location.pathname;
+   path = path.split("/");
+   path = path[path.length - 1];
+
+   useEffect(() => {
+      MenuList.forEach((data) => {
+         data.content?.forEach((item) => {
+            if (path === item.to) {
+               setState({ active: data.title })
+            }
+            item.content?.forEach(ele => {
+               if (path === ele.to) {
+                  setState({ activeSubmenu: item.title, active: data.title })
+               }
+            })
+         })
       })
-    })
-  }, [path]);
+   }, [path]);
 
    return (
-      <div 
+      <div
          onMouseEnter={() => ChangeIconSidebar(true)}
          onMouseLeave={() => ChangeIconSidebar(false)}
          className={`deznav ${iconHover}`}
@@ -139,6 +139,7 @@ const SideBar = () =>{
                                        })}
                                     </ul>
                                  </Collapse>
+
                               </>
                               :
                               <Link to={data.to} className={`${data.to === path ? 'mm-active' : ''}`}>
@@ -153,12 +154,12 @@ const SideBar = () =>{
             </ul>
 
             <div className="copyright">
-               <p>                  
-                  Tixia Vendor Admin Dashboard <br/> © {year} All Rights Reserved
+               <p>
+                  Tixia Vendor Admin Dashboard <br /> © {year} All Rights Reserved
                </p>
                <p className="op5">
                   Made with <span className="heart"
-                     onClick={(e)=>e.target.classList.toggle("heart-blast")}
+                     onClick={(e) => e.target.classList.toggle("heart-blast")}
                   ></span> by MalikMuzammil
                </p>
             </div>
@@ -168,3 +169,5 @@ const SideBar = () =>{
 
 }
 export default SideBar;
+
+

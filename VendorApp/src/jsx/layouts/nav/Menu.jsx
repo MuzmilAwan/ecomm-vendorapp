@@ -5,18 +5,11 @@ export const MenuList = [
         classsChange: 'mm-collapse',		
         iconStyle:<i className="flaticon-381-networking" />,
         content: [
+            
             // {
-            //     title: 'Dashboard Light',
-            //     to: 'dashboard',					
+            //     title: 'Analytics',
+            //     to: 'analytics',
             // },
-            // {
-            //     title: 'Dashboard Dark',
-            //     to: 'dashboard-dark',
-            // },
-            {
-                title: 'Analytics',
-                to: 'analytics',
-            },
             // {
             //     title: 'Events',
             //     to: 'events',
