@@ -151,10 +151,10 @@ import RechartJs from "./components/charts/rechart";
 // import FormValidation from "./components/Forms/FormValidation/FormValidation";
 
 /// Pages
+// // import LockScreen from "./pages/LockScreen";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
-// // import LockScreen from "./pages/LockScreen";
 import Error400 from "./pages/Error400";
 import Error403 from "./pages/Error403";
 import Error404 from "./pages/Error404";
@@ -185,8 +185,8 @@ const Markup = () => {
       //   { url: 'blog-category', component: <BlogCategory /> },
 
       //Profile
-      //   { url: "profile/overview", component: <Overview /> },
       { url: "profile/projects", component: <Projects /> },
+      //   { url: "profile/overview", component: <Overview /> },
       //   { url: "profile/projects-details", component: <ProjectsDetails /> },
       //   { url: "profile/campaigns", component: <Campaigns /> },
       //   { url: "profile/documents", component: <Documents /> },
@@ -323,8 +323,8 @@ const Markup = () => {
 
             <Route element={<MainLayout2 />} >
                <Route path='' element={<Analytics />} />
-               {/* <Route path='/dashboard-dark' element={<DashboardDark />} /> */}
               <Route path='/analytics' element={<Analytics />} />
+              {/* <Route path='/dashboard-dark' element={<DashboardDark />} /> */}
             </Route>
             <Route element={<MainLayout />} >
                {allroutes.map((data, i) => (

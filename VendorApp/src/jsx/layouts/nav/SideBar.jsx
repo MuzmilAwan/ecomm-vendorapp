@@ -26,7 +26,7 @@ const SideBar = () => {
       useContext(ThemeContext)
 
 
-   // For scroll
+   
    const [hideOnScroll, setHideOnScroll] = useState(true)
    useScrollPosition(
       ({ prevPos, currPos }) => {
@@ -36,7 +36,7 @@ const SideBar = () => {
       [hideOnScroll]
    )
 
-   /// Open menu  
+     
    const handleMenuActive = status => {
       setState({ active: status });
       if (state.active === status) {
@@ -51,7 +51,7 @@ const SideBar = () => {
    // }
 
 
-   /// Path
+   
    let path = window.location.pathname;
    path = path.split("/");
    path = path[path.length - 1];
