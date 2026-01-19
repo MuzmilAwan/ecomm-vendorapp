@@ -303,6 +303,31 @@ const Checkout = () => {
                                     Pay with Razorpay
                                  </button>
 
+                                 <button
+                                    type="button"
+                                    className="btn btn-success w-100 mt-2"
+                                    onClick={() => handlePayment("payu")}
+                                 >
+                                    Pay with PayU
+                                 </button>
+
+                                 <button
+                                    type="button"
+                                    className="btn btn-warning w-100 mt-2"
+                                    onClick={() => handlePayment("payu")}
+                                 >
+                                    Pay with Paytm
+                                 </button>
+
+                                 <button
+                                    type="button"
+                                    className="btn btn-primary w-100 mt-2"
+                                    onClick={() => handlePayment("payu")}
+                                 >
+                                    Pay with CCAvenue
+                                 </button>
+
+
                               </div>
 
 
