@@ -75,7 +75,7 @@ const Analytics = () => {
                   <Link to="/analytics">Analytics</Link>
                </li>
                {/* <li className="breadcrumb-item active">
-                  <Link to="/analytics">Analytics</Link>
+                  <Link to="/analytics">Dashboard</Link>
                </li> */}
 
 

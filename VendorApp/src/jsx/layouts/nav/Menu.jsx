@@ -1,11 +1,11 @@
 export const MenuList = [
     //Dashboard
     {
-        title: 'Dashboard',	
-        classsChange: 'mm-collapse',		
-        iconStyle:<i className="flaticon-381-networking" />,
+        title: 'Dashboard',
+        classsChange: 'mm-collapse',
+        iconStyle: <i className="flaticon-381-networking" />,
         content: [
-            
+
             // {
             //     title: 'Analytics',
             //     to: 'analytics',
@@ -17,13 +17,13 @@ export const MenuList = [
             // {
             //     title: 'Order List',
             //     to: 'order-list',
-                
+
             // },
-			// {
+            // {
             //     title: 'Customer List',
             //     to: 'customer-list',                
             // },
-			// {
+            // {
             //     title: 'Reviews',
             //     to: 'reviews',                
             // }			
@@ -73,10 +73,10 @@ export const MenuList = [
 
     //Profile Pages
     {
-        title:'Profile',
-        classChange : "mm-collapse",        
-        iconStyle : <i className="fa-regular fa-user fw-bold"/>,
-        content : [
+        title: 'Profile',
+        classChange: "mm-collapse",
+        iconStyle: <i className="fa-regular fa-user fw-bold" />,
+        content: [
             // {
             //     title: 'Overview',
             //     to: 'profile/overview',
@@ -211,7 +211,7 @@ export const MenuList = [
 
     //Apps
     {
-        title: 'Apps',	
+        title: 'Shop',
         classsChange: 'mm-collapse',
         iconStyle: <i className="flaticon-381-television" />,
         content: [
@@ -249,45 +249,52 @@ export const MenuList = [
             //     title:'Calendar',
             //     to: 'app-calender'
             // },
+            // {
+            //     title: 'Shop',
+            //     //to: './',
+            //     hasMenu : true,
+            //     content: [
+            // {
+            //     title: 'Product Grid',
+            //     to: 'ecom-product-grid',
+            // },
+            // {
+            //     title: 'Product List',
+            //     to: 'ecom-product-list',
+            // },
+            // {
+            //     title: 'Product Details',
+            //     to: 'ecom-product-detail',
+            // },
+            // {
+            //     title: 'Order',
+            //     to: 'ecom-product-order',
+            // },
+            // {
+            //     title: 'Checkout',
+            //     to: 'ecom-checkout',
+            // },
+            // {
+            //     title: 'Invoice',
+            //     to: 'ecom-invoice',
+            // },
+            // {
+            //     title: 'Customers',
+            //     to: 'ecom-customers',
+            // },
+            //     ],
+            // },
+
+            
             {
-                title: 'Shop',
-                //to: './',
-                hasMenu : true,
-                content: [
-                    {
-                        title: 'Product Grid',
-                        to: 'ecom-product-grid',
-                    },
-                    {
-                        title: 'Product List',
-                        to: 'ecom-product-list',
-                    },
-                    {
-                        title: 'Product Details',
-                        to: 'ecom-product-detail',
-                    },
-                    {
-                        title: 'Order',
-                        to: 'ecom-product-order',
-                    },
-                    {
-                        title: 'Checkout',
-                        to: 'ecom-checkout',
-                    },
-                    {
-                        title: 'Invoice',
-                        to: 'ecom-invoice',
-                    },
-                    {
-                        title: 'Customers',
-                        to: 'ecom-customers',
-                    },
-                ],
+                title: 'Checkout',
+                to: 'ecom-checkout',
             },
+           
         ],
     },
 
-     //Ait Kit
+    //Ait Kit
     //  {
     //     title:'AIKit',
     //     classsChange: 'mm-collapse',
@@ -339,7 +346,7 @@ export const MenuList = [
     //     classsChange: 'mm-collapse',
     //     iconStyle:  <i className="flaticon-381-controls-3" />,
     //     content: [
-            
+
     //         {
     //             title: 'RechartJs',
     //             to: 'chart-rechart',					
@@ -492,7 +499,7 @@ export const MenuList = [
     //         },
     //     ]
     // },
-    
+
     //Widget
     // {   
     //     title:'Widget',
@@ -549,8 +556,8 @@ export const MenuList = [
     //             title:'Bootstrap',
     //             to: 'table-bootstrap-basic',
     //         },
-           
-           
+
+
 
     //     ]
     // },
@@ -595,12 +602,12 @@ export const MenuList = [
     //                 },
     //             ],
     //         },
-            // {
-            //     title:'Lock Screen',
-            //     to: 'page-lock-screen',
-            // },
+    // {
+    //     title:'Lock Screen',
+    //     to: 'page-lock-screen',
+    // },
 
     //     ]
     // },
-    
+
 ]
