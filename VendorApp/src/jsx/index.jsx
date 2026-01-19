@@ -87,13 +87,13 @@ import Projects from './components/Profile/Projects'
 // import PostDetails from "./components/AppsMenu/AppProfile/PostDetails";
 
 /// Product List
-// import ProductGrid from "./components/AppsMenu/Shop/ProductGrid/ProductGrid";
-// import ProductList from "./components/AppsMenu/Shop/ProductList/ProductList";
-// import ProductDetail from "./components/AppsMenu/Shop/ProductGrid/ProductDetail";
-// import Checkout from "./components/AppsMenu/Shop/Checkout/Checkout";
-// import Invoice from "./components/AppsMenu/Shop/Invoice/Invoice";
-// import ProductOrder from "./components/AppsMenu/Shop/ProductOrder";
-// import Customers from "./components/AppsMenu/Shop/Customers/Customers";
+import ProductGrid from "./components/Shop/ProductGrid/ProductGrid";
+import ProductList from "./components/Shop/ProductList/ProductList";
+import ProductDetail from "./components/Shop/ProductGrid/ProductDetail";
+import Checkout from "./components/Shop/Checkout/Checkout";
+import Invoice from "./components/Shop/Invoice/Invoice";
+import ProductOrder from "./components/Shop/ProductOrder";
+import Customers from "./components/Shop/Customers/Customers";
 
 /// Charts
 import SparklineChart from "./components/charts/Sparkline";
@@ -228,14 +228,14 @@ const Markup = () => {
       //   { url: "post-details", component: <PostDetails /> },
 
       /// Shop
-      //    { url: "ecom-product-grid", component: <ProductGrid /> },
-      //    { url: "ecom-product-list", component: <ProductList /> },
-      //    { url: "ecom-product-detail", component: <ProductDetail /> },
-      //    { url: "ecom-product-order", component: <ProductOrder /> },
-      //    { url: "ecom-checkout", component: <Checkout /> },
-      //    { url: "ecom-invoice", component: <Invoice /> },
-      //    { url: "ecom-product-detail", component: <ProductDetail /> },
-      //    { url: "ecom-customers", component: <Customers /> },
+         { url: "ecom-product-grid", component: <ProductGrid /> },
+         { url: "ecom-product-list", component: <ProductList /> },
+         { url: "ecom-product-detail", component: <ProductDetail /> },
+         { url: "ecom-product-order", component: <ProductOrder /> },
+         { url: "ecom-checkout", component: <Checkout /> },
+         { url: "ecom-invoice", component: <Invoice /> },
+         { url: "ecom-product-detail", component: <ProductDetail /> },
+         { url: "ecom-customers", component: <Customers /> },
 
 
       ///AiKit    

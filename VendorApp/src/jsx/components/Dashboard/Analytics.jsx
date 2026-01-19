@@ -42,10 +42,10 @@ const Analytics = () => {
    }, [isAuthenticated, getIdTokenClaims]);
 
 
+
    return (
       <>
          {/* AUTH0 RESPONSE DISPLAY (TEMPORARY) */}
-        
          <div className="card mt-3">
             <div className="card-body">
                <h5>User Profile</h5>
@@ -67,6 +67,7 @@ const Analytics = () => {
                </pre>
             </div>
          </div>
+
 
          <div className="page-titles">
             <ol className="breadcrumb">

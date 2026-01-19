@@ -43,12 +43,12 @@ const SideBar = () => {
          setState({ active: "" });
       }
    }
-   // const handleSubmenuActive = (status) => {		
-   // 	setState({activeSubmenu : status})
-   // 	if(state.activeSubmenu === status){
-   // 		setState({activeSubmenu : ""})			
-   // 	}    
-   // }
+   const handleSubmenuActive = (status) => {		
+   	setState({activeSubmenu : status})
+   	if(state.activeSubmenu === status){
+   		setState({activeSubmenu : ""})			
+   	}    
+   }
 
 
    
