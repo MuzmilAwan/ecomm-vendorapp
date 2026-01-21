@@ -5,7 +5,7 @@ import usePayment from "../../../../payments/usePayment";
 
 
 const Checkout = () => {
-   const { initiatePayment } = usePayment();
+   const { initiatePayment, status, error, isProcessing } = usePayment();
    const [paymentResponse, setPaymentResponse] = useState(null);
 
    // dummy cart replace later with real data
@@ -16,15 +16,17 @@ const Checkout = () => {
 
    const total = 20;
 
-   const handlePayment = async (gateway) => {
-      const response = await initiatePayment(gateway, {
+   const handlePayment = async (gateway, extra = {}) => {
+      const res = await initiatePayment(gateway, {
          items: cartItems,
          totalAmount: total,
          currency: "USD",
+         ...extra,
       });
 
-      setPaymentResponse(response);
+      setPaymentResponse(res);
    };
+
 
 
 
@@ -275,69 +277,149 @@ const Checkout = () => {
                               </div> */}
                               <hr className="mb-4" />
 
-                              <h3 className="mb-3">Payment Methods</h3>
+                              {/* Negative Scenario Simulation */}
+                              <div className="card mt-4">
+                                 <div className="card-body">
+                                    <h5 className="mb-3">Negative Scenarios For testing</h5>
 
-                              {/* payment buttons  */}
-                              <div className="mb-3">
-                                 <button
-                                    type="button"
-                                    className="btn btn-success w-100"
-                                    onClick={() => handlePayment("stripe")}
-                                 >
-                                    Pay with Stripe
-                                 </button>
+                                    <div className="row g-3">
+                                       <div className="col-md-3">
+                                          <button
+                                             className="btn btn-warning w-100"
+                                             onClick={() =>
+                                                handlePayment("stripe", { simulate: "FAIL" })
+                                             }
+                                          >
+                                             Failure
+                                          </button>
+                                       </div>
 
-                                 <button
-                                    type="button"
-                                    className="btn btn-warning w-100 mt-2"
-                                    onClick={() => handlePayment("paypal")}
-                                 >
-                                    Pay with PayPal
-                                 </button>
+                                       <div className="col-md-3">
+                                          <button
+                                             className="btn btn-secondary w-100"
+                                             onClick={() =>
+                                                handlePayment("stripe", { simulate: "CANCEL" })
+                                             }
+                                          >
+                                             Cancel
+                                          </button>
+                                       </div>
 
-                                 <button
-                                    type="button"
-                                    className="btn btn-primary w-100 mt-2"
-                                    onClick={() => handlePayment("razorpay")}
-                                 >
-                                    Pay with Razorpay
-                                 </button>
+                                       <div className="col-md-3">
+                                          <button
+                                             className="btn btn-success w-100"
+                                             onClick={() =>
+                                                handlePayment("stripe", { simulate: "GATEWAY" })
+                                             }
+                                          >
+                                             PG Unavailable
+                                          </button>
+                                       </div>
 
-                                 <button
-                                    type="button"
-                                    className="btn btn-success w-100 mt-2"
-                                    onClick={() => handlePayment("payu")}
-                                 >
-                                    Pay with PayU
-                                 </button>
-
-                                 <button
-                                    type="button"
-                                    className="btn btn-warning w-100 mt-2"
-                                    onClick={() => handlePayment("payu")}
-                                 >
-                                    Pay with Paytm
-                                 </button>
-
-                                 <button
-                                    type="button"
-                                    className="btn btn-primary w-100 mt-2"
-                                    onClick={() => handlePayment("payu")}
-                                 >
-                                    Pay with CCAvenue
-                                 </button>
-
-
+                                       <div className="col-md-3">
+                                          <button
+                                             className="btn btn-primary w-100"
+                                             onClick={() =>
+                                                handlePayment("stripe", { simulate: "TIMEOUT" })
+                                             }
+                                          >
+                                             Timeout
+                                          </button>
+                                       </div>
+                                    </div>
+                                 </div>
                               </div>
 
 
+                              <h3 className="mb-3">Payment Methods</h3>
+
+                              {/* Payment Buttons Section */}
+                              <div className="card mt-3">
+                                 <div className="card-body">
+
+                                    <div className="row g-3">
+                                       <div className="col-md-4">
+                                          <button
+                                             disabled={isProcessing}
+                                             onClick={() => handlePayment("stripe")}
+                                             className="btn btn-warning w-100"
+                                          >
+                                             {isProcessing ? "Processing..." : "Pay with Stripe"}
+                                          </button>
+                                       </div>
+
+                                       <div className="col-md-4">
+                                          <button
+                                             disabled={isProcessing}
+                                             onClick={() => handlePayment("paypal")}
+                                             className="btn btn-success w-100"
+                                          >
+                                             {isProcessing ? "Processing..." : "Pay with Paypal"}
+                                          </button>
+                                       </div>
+
+                                       <div className="col-md-4">
+                                          <button
+                                             disabled={isProcessing}
+                                             onClick={() => handlePayment("razorpay")}
+                                             className="btn btn-primary w-100"
+                                          >
+                                             {isProcessing ? "Processing..." : "Pay with Razorpay"}
+                                          </button>
+                                       </div>
+
+                                       <div className="col-md-4">
+                                          <button
+                                             disabled={isProcessing}
+                                             onClick={() => handlePayment("payu")}
+                                             className="btn btn-success w-100"
+                                          >
+                                             {isProcessing ? "Processing..." : "Pay with PayU"}
+                                          </button>
+                                       </div>
+
+                                       <div className="col-md-4">
+                                          <button
+                                             disabled={isProcessing}
+                                             onClick={() => handlePayment("paytm")}
+                                             className="btn btn-warning w-100"
+                                          >
+                                             {isProcessing ? "Processing..." : "Pay with Paytm"}
+                                          </button>
+                                       </div>
+
+                                       <div className="col-md-4">
+                                          <button
+                                             disabled={isProcessing}
+                                             onClick={() => handlePayment("ccavenue")}
+                                             className="btn btn-primary w-100"
+                                          >
+                                             {isProcessing ? "Processing..." : "Pay with CCAvenue"}
+                                          </button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+
+
+
                               {/* UI display temporaray  */}
-                              {paymentResponse && (
-                                 <div className="mt-3">
-                                    <h6>Payment Response</h6>
-                                    <pre>{JSON.stringify(paymentResponse, null, 2)}</pre>
+
+                              {status && (
+                                 <div className="alert alert-info mt-3">
+                                    Payment Status: <strong>{status}</strong>
                                  </div>
                               )}
+
+                              {paymentResponse && (
+                                 <div className="alert alert-success mt-3">
+                                    <h6>Payment Response</h6>
+                                    <pre style={{ margin: 0 }}>
+                                       {JSON.stringify(paymentResponse, null, 2)}
+                                    </pre>
+                                 </div>
+                              )}
+
 
 
 

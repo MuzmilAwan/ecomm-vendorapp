@@ -1,9 +1,31 @@
 const stripeGateway = {
   name: "stripe",
 
-  pay: async (payload) => {
-    console.log("Stripe Payload:", payload);
+  // pay: async (payload) => {
+  //   console.log("Stripe Payload:", payload);
 
+   pay: async (payload) => {
+
+    // simulate scenarios
+    if (payload.simulate === "CANCEL") {
+      throw { code: "USER_CANCELLED" };
+    }
+
+    if (payload.simulate === "FAIL") {
+      throw { code: "PAYMENT_FAILED" };
+    }
+
+    if (payload.simulate === "GATEWAY") {
+      throw { code: "GATEWAY_UNAVAILABLE" };
+    }
+
+    if (payload.simulate === "TIMEOUT") {
+      await new Promise((_, reject) =>
+        setTimeout(() => reject({ code: "TIMEOUT" }), 5000)
+      );
+    }
+
+    
     // Simulated delay (acts like API call)
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
@@ -24,44 +46,4 @@ const stripeGateway = {
 };
 
 export default stripeGateway;
-
-
-
-// import { loadStripe } from "@stripe/stripe-js";
-
-// const stripePromise = loadStripe("pk_test_xxxxx");
-
-// const stripeGateway = {
-//   name: "stripe",
-
-//   pay: async (payload) => {
-//     const stripe = await stripePromise;
-
-//     const result = await stripe.redirectToCheckout({
-//       lineItems: payload.items.map((item) => ({
-//         price_data: {
-//           currency: payload.currency,
-//           product_data: {
-//             name: item.name,
-//           },
-//           unit_amount: item.price * 100,
-//         },
-//         quantity: item.quantity,
-//       })),
-//       mode: "payment",
-//       successUrl: window.location.origin + "/analytics",
-//       cancelUrl: window.location.origin + "/ecom-checkout",
-//     });
-
-//     return {
-//       success: !result.error,
-//       gateway: "Stripe",
-//       data: result,
-//     };
-//   },
-// };
-
-// export default stripeGateway;
-
-
 
