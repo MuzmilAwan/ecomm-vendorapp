@@ -262,7 +262,7 @@ const Checkout = () => {
                            <h3 className="mb-3">Payment Methods</h3>
 
                            {/* Payment Buttons Section */}
-                           <div className="card mt-3">
+                           {/* <div className="card mt-3"> */}
                               <div className="card-body">
 
                                  <div className="row g-3">
@@ -329,7 +329,7 @@ const Checkout = () => {
                                     </div>
                                  </div>
                               </div>
-                           </div>
+                           {/* </div> */}
 
                         </div>
                      </div>
