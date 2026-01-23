@@ -2,6 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Form } from "react-bootstrap";
 import PageTitle from "../../../layouts/PageTitle";
 import usePayment from "../../../../payments/usePayment";
+import stripeGateway from "../../../../payments/gateways/stripe";
 
 
 const Checkout = () => {
@@ -16,16 +17,25 @@ const Checkout = () => {
 
    const total = 20;
 
-   const handlePayment = async (gateway, extra = {}) => {
-      const res = await initiatePayment(gateway, {
-         items: cartItems,
-         totalAmount: total,
-         currency: "USD",
-         ...extra,
-      });
+   // const handlePayment = async (gateway, extra = {}) => {
+   //    const res = await initiatePayment(gateway, {
+   //       items: cartItems,
+   //       totalAmount: total,
+   //       currency: "USD",
+   //       ...extra,
+   //    });
 
-      setPaymentResponse(res);
+   //    setPaymentResponse(res);
+   // };
+   const handlePayment = (gateway) => {
+
+
+      if (gateway === "stripe") {
+         stripeGateway.pay();
+         return; // STOP React execution here
+      }
    };
+
 
 
 
@@ -247,302 +257,80 @@ const Checkout = () => {
                                     </div>
                                  </div>
                               </div>
-                              {/* <hr className="mb-4" />
-                              <div className="form-check custom-checkbox mb-2">
-                                 <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    id="same-address"
-                                 />
-                                 <label
-                                    className="form-check-label"
-                                    htmlFor="same-address"
-                                 >
-                                    Shipping address is the same as my billing
-                                    address
-                                 </label>
-                              </div>
-                              <div className="form-check custom-checkbox mb-2">
-                                 <input
-                                    type="checkbox"
-                                    className="form-check-input"
-                                    id="save-info"
-                                 />
-                                 <label
-                                    className="form-check-label"
-                                    htmlFor="save-info"
-                                 >
-                                    Save this information for next time
-                                 </label>
-                              </div> */}
-                              <hr className="mb-4" />
-
-                              {/* Negative Scenario Simulation */}
-                              <div className="card mt-4">
-                                 <div className="card-body">
-                                    <h5 className="mb-3">Negative Scenarios For testing</h5>
-
-                                    <div className="row g-3">
-                                       <div className="col-md-3">
-                                          <button
-                                             className="btn btn-warning w-100"
-                                             onClick={() =>
-                                                handlePayment("stripe", { simulate: "FAIL" })
-                                             }
-                                          >
-                                             Failure
-                                          </button>
-                                       </div>
-
-                                       <div className="col-md-3">
-                                          <button
-                                             className="btn btn-secondary w-100"
-                                             onClick={() =>
-                                                handlePayment("stripe", { simulate: "CANCEL" })
-                                             }
-                                          >
-                                             Cancel
-                                          </button>
-                                       </div>
-
-                                       <div className="col-md-3">
-                                          <button
-                                             className="btn btn-success w-100"
-                                             onClick={() =>
-                                                handlePayment("stripe", { simulate: "GATEWAY" })
-                                             }
-                                          >
-                                             PG Unavailable
-                                          </button>
-                                       </div>
-
-                                       <div className="col-md-3">
-                                          <button
-                                             className="btn btn-primary w-100"
-                                             onClick={() =>
-                                                handlePayment("stripe", { simulate: "TIMEOUT" })
-                                             }
-                                          >
-                                             Timeout
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-
-
-                              <h3 className="mb-3">Payment Methods</h3>
-
-                              {/* Payment Buttons Section */}
-                              <div className="card mt-3">
-                                 <div className="card-body">
-
-                                    <div className="row g-3">
-                                       <div className="col-md-4">
-                                          <button
-                                             disabled={isProcessing}
-                                             onClick={() => handlePayment("stripe")}
-                                             className="btn btn-warning w-100"
-                                          >
-                                             {isProcessing ? "Processing..." : "Pay with Stripe"}
-                                          </button>
-                                       </div>
-
-                                       <div className="col-md-4">
-                                          <button
-                                             disabled={isProcessing}
-                                             onClick={() => handlePayment("paypal")}
-                                             className="btn btn-success w-100"
-                                          >
-                                             {isProcessing ? "Processing..." : "Pay with Paypal"}
-                                          </button>
-                                       </div>
-
-                                       <div className="col-md-4">
-                                          <button
-                                             disabled={isProcessing}
-                                             onClick={() => handlePayment("razorpay")}
-                                             className="btn btn-primary w-100"
-                                          >
-                                             {isProcessing ? "Processing..." : "Pay with Razorpay"}
-                                          </button>
-                                       </div>
-
-                                       <div className="col-md-4">
-                                          <button
-                                             disabled={isProcessing}
-                                             onClick={() => handlePayment("payu")}
-                                             className="btn btn-success w-100"
-                                          >
-                                             {isProcessing ? "Processing..." : "Pay with PayU"}
-                                          </button>
-                                       </div>
-
-                                       <div className="col-md-4">
-                                          <button
-                                             disabled={isProcessing}
-                                             onClick={() => handlePayment("paytm")}
-                                             className="btn btn-warning w-100"
-                                          >
-                                             {isProcessing ? "Processing..." : "Pay with Paytm"}
-                                          </button>
-                                       </div>
-
-                                       <div className="col-md-4">
-                                          <button
-                                             disabled={isProcessing}
-                                             onClick={() => handlePayment("ccavenue")}
-                                             className="btn btn-primary w-100"
-                                          >
-                                             {isProcessing ? "Processing..." : "Pay with CCAvenue"}
-                                          </button>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-
-
-
-                              {/* UI display temporaray  */}
-
-                              {status && (
-                                 <div className="alert alert-info mt-3">
-                                    Payment Status: <strong>{status}</strong>
-                                 </div>
-                              )}
-
-                              {paymentResponse && (
-                                 <div className="alert alert-success mt-3">
-                                    <h6>Payment Response</h6>
-                                    <pre style={{ margin: 0 }}>
-                                       {JSON.stringify(paymentResponse, null, 2)}
-                                    </pre>
-                                 </div>
-                              )}
-
-
-
-
-                              {/* <div className="d-block my-3">
-                                 <div className="form-check custom-radio mb-2">
-                                    <input
-                                       id="credit"
-                                       name="paymentMethod"
-                                       type="radio"
-                                       className="form-check-input"
-                                       required
-                                    />
-                                    <label
-                                       className="form-check-label"
-                                       htmlFor="credit"
-                                    >
-                                       Credit card
-                                    </label>
-                                 </div>
-                                 <div className="form-check custom-radio mb-2">
-                                    <input
-                                       id="debit"
-                                       name="paymentMethod"
-                                       type="radio"
-                                       className="form-check-input"
-                                       required
-                                    />
-                                    <label
-                                       className="form-check-label"
-                                       htmlFor="debit"
-                                    >
-                                       Debit card
-                                    </label>
-                                 </div> */}
-                              {/* <div className="form-check custom-radio mb-2">
-                                    <input
-                                       id="paypal"
-                                       name="paymentMethod"
-                                       type="radio"
-                                       className="form-check-input"
-                                       required
-                                    />
-                                    <label
-                                       className="form-check-label"
-                                       htmlFor="paypal"
-                                    >
-                                       Paypal
-                                    </label>
-                                 </div> */}
-                              {/* </div> */}
-                              {/* <div className="row">
-                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="cc-name" className="form-label">
-                                       Name on card
-                                    </label>
-                                    <input
-                                       type="text"
-                                       className="form-control"
-                                       id="cc-name"
-                                       placeholder=""
-                                       required
-                                    />
-                                    <small className="text-muted">
-                                       Full name as displayed on card
-                                    </small>
-                                    <div className="invalid-feedback">
-                                       Name on card is required
-                                    </div>
-                                 </div>
-                                 <div className="col-md-6 mb-3">
-                                    <label htmlFor="cc-number" className="form-label">
-                                       Credit card number
-                                    </label>
-                                    <input
-                                       type="text"
-                                       className="form-control"
-                                       id="cc-number"
-                                       placeholder=""
-                                       required
-                                    />
-                                    <div className="invalid-feedback">
-                                       Credit card number is required
-                                    </div>
-                                 </div>
-                              </div> */}
-                              {/* <div className="row">
-                                 <div className="col-md-3 mb-3">
-                                    <label htmlFor="cc-expiration" className="form-label">
-                                       Expiration
-                                    </label>
-                                    <input
-                                       type="text"
-                                       className="form-control"
-                                       id="cc-expiration"
-                                       placeholder=""
-                                       required
-                                    />
-                                    <div className="invalid-feedback" >
-                                       Expiration date required
-                                    </div>
-                                 </div>
-                                 <div className="col-md-3 mb-3">
-                                    <label htmlFor="cc-expiration" className="form-label">CVV</label>
-                                    <input
-                                       type="text"
-                                       className="form-control"
-                                       id="cc-cvv"
-                                       placeholder=""
-                                       required
-                                    />
-                                    <div className="invalid-feedback">
-                                       Security code required
-                                    </div>
-                                 </div>
-                              </div> */}
-                              <hr className="mb-4" />
-                              {/* <button
-                                 className="btn btn-primary btn-lg btn-block"
-                                 type="submit"
-                              >
-                                 Continue to checkout
-                              </button> */}
+  
                            </form>
+                           <h3 className="mb-3">Payment Methods</h3>
+
+                           {/* Payment Buttons Section */}
+                           <div className="card mt-3">
+                              <div className="card-body">
+
+                                 <div className="row g-3">
+                                    <div className="col-md-4">
+                                       <button
+                                          type="button"
+                                          disabled={isProcessing}
+                                          onClick={() => handlePayment("stripe")}
+                                          className="btn btn-warning w-100"
+                                       >
+                                          Pay with Stripe
+                                       </button>
+
+                                    </div>
+
+                                    <div className="col-md-4">
+                                       <button
+                                          disabled
+                                          onClick={() => handlePayment("paypal")}
+                                          className="btn btn-success w-100"
+                                       >
+                                          {isProcessing ? "Processing..." : "Pay with Paypal"}
+                                       </button>
+                                    </div>
+
+                                    <div className="col-md-4">
+                                       <button
+                                          disabled
+                                          onClick={() => handlePayment("razorpay")}
+                                          className="btn btn-primary w-100"
+                                       >
+                                          {isProcessing ? "Processing..." : "Pay with Razorpay"}
+                                       </button>
+                                    </div>
+
+                                    <div className="col-md-4">
+                                       <button
+                                          disabled
+                                          onClick={() => handlePayment("payu")}
+                                          className="btn btn-success w-100"
+                                       >
+                                          {isProcessing ? "Processing..." : "Pay with PayU"}
+                                       </button>
+                                    </div>
+
+                                    <div className="col-md-4">
+                                       <button
+                                          disabled
+                                          onClick={() => handlePayment("paytm")}
+                                          className="btn btn-warning w-100"
+                                       >
+                                          {isProcessing ? "Processing..." : "Pay with Paytm"}
+                                       </button>
+                                    </div>
+
+                                    <div className="col-md-4">
+                                       <button
+                                          disabled
+                                          onClick={() => handlePayment("ccavenue")}
+                                          className="btn btn-primary w-100"
+                                       >
+                                          {isProcessing ? "Processing..." : "Pay with CCAvenue"}
+                                       </button>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+
                         </div>
                      </div>
                   </div>

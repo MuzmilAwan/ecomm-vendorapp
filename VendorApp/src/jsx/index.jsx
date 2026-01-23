@@ -161,6 +161,8 @@ import Error404 from "./pages/Error404";
 import Error500 from "./pages/Error500";
 import Error503 from "./pages/Error503";
 import EventSidebar from "./layouts/EventSidebar";
+import PaymentSuccess from "./pages/paySuccess";
+import PaymentCancel from "./pages/payCancel";
 
 
 const Markup = () => {
@@ -228,14 +230,14 @@ const Markup = () => {
       //   { url: "post-details", component: <PostDetails /> },
 
       /// Shop
-         { url: "ecom-product-grid", component: <ProductGrid /> },
-         { url: "ecom-product-list", component: <ProductList /> },
-         { url: "ecom-product-detail", component: <ProductDetail /> },
-         { url: "ecom-product-order", component: <ProductOrder /> },
-         { url: "ecom-checkout", component: <Checkout /> },
-         { url: "ecom-invoice", component: <Invoice /> },
-         { url: "ecom-product-detail", component: <ProductDetail /> },
-         { url: "ecom-customers", component: <Customers /> },
+      { url: "ecom-product-grid", component: <ProductGrid /> },
+      { url: "ecom-product-list", component: <ProductList /> },
+      { url: "ecom-product-detail", component: <ProductDetail /> },
+      { url: "ecom-product-order", component: <ProductOrder /> },
+      { url: "ecom-checkout", component: <Checkout /> },
+      { url: "ecom-invoice", component: <Invoice /> },
+      { url: "ecom-product-detail", component: <ProductDetail /> },
+      { url: "ecom-customers", component: <Customers /> },
 
 
       ///AiKit    
@@ -320,11 +322,14 @@ const Markup = () => {
             <Route path='page-forgot-password' element={<ForgotPassword />} />
             <Route path='page-register' element={<Registration />} />
             <Route path='/page-login' element={<Login />} />
+            <Route path="/payment-success" element={<PaymentSuccess />} />
+            <Route path="/payment-cancel" element={<PaymentCancel />} />
+
 
             <Route element={<MainLayout2 />} >
                <Route path='' element={<Analytics />} />
-              <Route path='/analytics' element={<Analytics />} />
-              {/* <Route path='/dashboard-dark' element={<DashboardDark />} /> */}
+               <Route path='/analytics' element={<Analytics />} />
+               {/* <Route path='/dashboard-dark' element={<DashboardDark />} /> */}
             </Route>
             <Route element={<MainLayout />} >
                {allroutes.map((data, i) => (
