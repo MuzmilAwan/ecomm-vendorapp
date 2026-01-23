@@ -14,10 +14,7 @@ const stripeGateway = {
     //   pending: true,
     //   gateway: "Stripe",
     // };
-    // return {
-    //   status: "REDIRECTING",
-    //   gateway: "STRIPE",
-    // };
+  
   },
 };
 
